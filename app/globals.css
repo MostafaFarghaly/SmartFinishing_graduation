@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff; 
+  --foreground: #171717;
+}
+
+/* لو عايز وضع دارك مود تفعلو لاحقاً */
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+*/
+
+body {
+  color: var(--foreground);
+  background-image: var(--background); /* <<< هنا التغيير الصح */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+}
