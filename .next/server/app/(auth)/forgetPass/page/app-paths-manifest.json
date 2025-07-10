@@ -1,0 +1,3 @@
+{
+  "/(auth)/forgetPass/page": "app/(auth)/forgetPass/page.js"
+}
