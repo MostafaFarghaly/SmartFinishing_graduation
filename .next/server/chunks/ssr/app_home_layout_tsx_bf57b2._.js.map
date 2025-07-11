@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://D%3A/front_end/projects/next_js/smart-finshing/app/home/layout.tsx"],"sourcesContent":["import type { Metadata } from \"next\";\r\n\r\n\r\n\r\nexport const metadata: Metadata = {\r\n  title: \"home\",\r\n};\r\n\r\nexport default function RootLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: React.ReactNode;\r\n}>) {\r\n  return <>{children}</>;\r\n}\r\n"],"names":[],"mappings":";;;;;;AAIO,MAAM,WAAqB;IAChC,OAAO;AACT;AAEe,SAAS,WAAW,EACjC,QAAQ,EAGR;IACA,qBAAO;kBAAG;;AACZ"}},
-    {"offset": {"line": 21, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

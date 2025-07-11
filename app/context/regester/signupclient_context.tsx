@@ -2,18 +2,55 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useToken } from "../token_context";
-import { useApi } from "../ApiContext"; // Assuming you have a token context to manage user data
+import { useApi } from "../ApiContext";
 
-const SignUpClientContext = createContext();
- // Assuming you have a base URL context
+// أنواع المدن
+interface City {
+  id: number;
+  name: string;
+}
 
-export function SignUpClientProvider({ children }) {
+// أنواع بيانات المستخدم
+interface UserData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  phoneNumber: string;
+  address: string;
+  buildingNumber: string;
+  cityId: string;
+  age: string;
+  profilePicture: File | null;
+}
+
+// نوع السياق
+interface SignUpClientContextType {
+  error: string | string[];
+  cities: City[];
+  isLoading: boolean;
+  user: UserData;
+  getUserData: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  submitForm: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+// إنشاء السياق بالنوع
+const SignUpClientContext = createContext<SignUpClientContextType | undefined>(
+  undefined
+);
+
+export function SignUpClientProvider({ children }: { children: React.ReactNode }) {
   const { saveUserData } = useToken();
   const { baseUrl } = useApi();
-  const [error, setError] = useState("");
-  const [cities, setCities] = useState([]);
+
+  const [error, setError] = useState<string | string[]>("");
+
+  const [cities, setCities] = useState<City[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState({
+
+  const [user, setUser] = useState<UserData>({
     name: "",
     email: "",
     password: "",
@@ -26,22 +63,27 @@ export function SignUpClientProvider({ children }) {
     profilePicture: null,
   });
 
+  // جلب المدن
   useEffect(() => {
     axios
       .get(`${baseUrl}/api/Cities`)
       .then((res) => setCities(res.data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [baseUrl]);
 
-  function getUserData(e) {
-    const { name, value, files } = e.target;
-    if (name === "profilePicture") {
+  // حفظ بيانات المستخدم
+  function getUserData(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const { name, value, files } = e.target as HTMLInputElement;
+    if (name === "profilePicture" && files) {
       setUser((prev) => ({ ...prev, profilePicture: files[0] }));
     } else {
       setUser((prev) => ({ ...prev, [name]: value }));
     }
   }
 
+  // إرسال البيانات
   async function sendData() {
     const formData = new FormData();
     formData.append("Name", user.name);
@@ -55,30 +97,36 @@ export function SignUpClientProvider({ children }) {
     if (user.age) formData.append("Age", user.age);
     if (user.profilePicture) formData.append("ProfilePicture", user.profilePicture);
 
-    const { data } = await axios.post(
-      `${baseUrl}/api/account/register/customer`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        validateStatus: () => true,
-      }
-    );
+    try {
+      const { data } = await axios.post(
+        `${baseUrl}/api/account/register/customer`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          validateStatus: () => true,
+        }
+      );
 
-    if (data.errors == null) {
+      if (data.errors == null) {
+        setIsLoading(false);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userData", JSON.stringify(data));
+        saveUserData();
+        window.location.href = "/";
+      } else {
+        setIsLoading(false);
+        setError(data.errors);
+      }
+    } catch (err: any) {
       setIsLoading(false);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("userData", JSON.stringify(data));
-      saveUserData();
-      window.location.href = "/";
-    } else {
-      setIsLoading(false);
-      setError(data.errors);
+      setError("Something went wrong. Please try again.");
     }
   }
 
-  function submitForm(e) {
+  // عند الضغط على زر التسجيل
+  function submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
     sendData();
@@ -100,6 +148,7 @@ export function SignUpClientProvider({ children }) {
   );
 }
 
+// استخدام السياق
 export function useSignUpClient() {
   const context = useContext(SignUpClientContext);
   if (!context) {

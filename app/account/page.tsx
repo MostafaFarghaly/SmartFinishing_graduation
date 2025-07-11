@@ -13,6 +13,7 @@ import {
 import Image from "next/image";
 import Navbar from "../components/Nav/page";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import {InfoBox} from "../components/shared/FormFields";
 
 
 export default function Account() {
@@ -21,19 +22,19 @@ export default function Account() {
   const userRole =
     userData?.["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || "";
 
-  const [profileImage, setProfileImage] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadStatus, setUploadStatus] = useState(null);
+const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploadStatus, setUploadStatus] = useState<string | null>(null);
   const [uploadErrorMessage, setUploadErrorMessage] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteMessage, setDeleteMessage] = useState(""); // <-- add this
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadClick = () => fileInputRef.current?.click();
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       setSelectedFile(file);
       const previewUrl = URL.createObjectURL(file);
@@ -42,6 +43,7 @@ export default function Account() {
       setUploadErrorMessage("");
     }
   };
+
 
   const uploadProfilePictureToServer = async () => {
     if (!selectedFile) return;
@@ -55,7 +57,7 @@ export default function Account() {
     } catch (error) {
       console.error("Upload failed:", error);
       setUploadStatus("error");
-      setUploadErrorMessage(error.message || "An error occurred while uploading the image.");
+      setUploadErrorMessage((error as Error).message || "An error occurred while uploading the image.");
     } finally {
       setIsUploading(false);
     }
@@ -233,26 +235,6 @@ export default function Account() {
           Service Code
         </a>
       </footer>
-    </div>
-  );
-}
-
-function InfoBox({ icon, title, desc, onClick }) {
-  return (
-    <div
-      onClick={onClick}
-      className="bg-white p-3 sm:p-4 rounded shadow cursor-pointer hover:bg-gray-50"
-    >
-      <div className="flex justify-between items-start gap-2">
-        <div className="flex items-start gap-3">
-          <div className="text-lg sm:text-xl text-green-600">{icon}</div>
-          <div>
-            <h3 className="font-semibold text-sm sm:text-base">{title}</h3>
-            <p className="text-xs sm:text-sm text-gray-600">{desc}</p>
-          </div>
-        </div>
-        <span className="text-xl text-gray-400">›</span>
-      </div>
     </div>
   );
 }

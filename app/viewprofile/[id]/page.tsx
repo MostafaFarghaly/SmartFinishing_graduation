@@ -52,7 +52,6 @@ export default function ViewProfile() {
     "";
 
   const isOwnProfile = userRole === "Worker" && id === String(saveData?.workerId);
-  const isOwnerByEmail = saveData?.email === userData?.email && userRole === "Worker";
 
 
   useEffect(() => {

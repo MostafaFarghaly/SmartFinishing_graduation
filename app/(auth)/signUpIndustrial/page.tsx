@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from "next/link";
 import React, { useState } from 'react';
 import { useSignUpIndustrial } from "../../context/regester/signUpWorker_context";
+import type { WorkerSignUpData } from "../../context/regester/signUpWorker_context";
+import { TextField, SelectField, TextAreaField } from "../../components/shared/FormFields";
+
 
 export default function SignUpIndustrial() {
   const {
@@ -17,11 +20,11 @@ export default function SignUpIndustrial() {
   } = useSignUpIndustrial();
 
   const [step, setStep] = useState(1);
-  const [formErrors, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState<Partial<Record<keyof WorkerSignUpData, string>>>({});
   const [submitted, setSubmitted] = useState(false);
 
-  const validateStep = (step) => {
-    const errors = {};
+  const validateStep = (step: number) => {
+    const errors: Partial<Record<keyof WorkerSignUpData, string>> = {};
 
     if (step === 1) {
       if (!user.name) errors.name = 'Full Name is required.';
@@ -66,13 +69,13 @@ export default function SignUpIndustrial() {
     setStep(prev => prev - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     const valid = validateStep(3);
     if (valid) {
       setFormErrors({});
-      submitForm(e);
+      submitForm();
     }
   };
 
@@ -124,23 +127,82 @@ export default function SignUpIndustrial() {
 
             {step === 3 && (
               <>
-                <SelectField id="serviceId" label="Service Type" error={formErrors.serviceId} showError={submitted} options={services} value={user.serviceId} onChange={getUserData} />
-                <TextAreaField id="description" label="Description" error={formErrors.description} showError={submitted} value={user.description} onChange={getUserData} />
-                <TextField id="experienceYears" label="Experience Years" type="number" value={user.experienceYears} onChange={getUserData} />
-                <TextField id="companyName" label="Company Name" value={user.companyName} onChange={getUserData} />
-                <TextField id="minPrice" label="Min Price" type="number" value={user.minPrice} onChange={getUserData} />
-                <TextField id="maxPrice" label="Max Price" type="number" value={user.maxPrice} onChange={getUserData} />
-
-                <label htmlFor="profilePicture" className="block text-sm font-medium text-gray-700">Profile Picture</label>
-                <input
-                  name="profilePicture"
-                  type="file"
-                  accept="image/*"
+                <SelectField
+                  id="serviceId"
+                  label="Service Type"
+                  error={formErrors.serviceId}
+                  showError={submitted}
+                  options={services}
+                  value={user.serviceId}
                   onChange={getUserData}
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
                 />
+                
+                <TextAreaField
+                  id="description"
+                  label="Description"
+                  error={formErrors.description}
+                  showError={submitted}
+                  value={user.description}
+                  onChange={getUserData}
+                />
+                
+                <TextField
+                  id="experienceYears"
+                  label="Experience Years"
+                  type="number"
+                  error={formErrors.experienceYears}
+                  showError={submitted}
+                  value={user.experienceYears}
+                  onChange={getUserData}
+                />
+                
+                <TextField
+                  id="companyName"
+                  label="Company Name"
+                  error={formErrors.companyName}
+                  showError={submitted}
+                  value={user.companyName}
+                  onChange={getUserData}
+                />
+                
+                <TextField
+                  id="minPrice"
+                  label="Min Price"
+                  type="number"
+                  error={formErrors.minPrice}
+                  showError={submitted}
+                  value={user.minPrice}
+                  onChange={getUserData}
+                />
+                
+                <TextField
+                  id="maxPrice"
+                  label="Max Price"
+                  type="number"
+                  error={formErrors.maxPrice}
+                  showError={submitted}
+                  value={user.maxPrice}
+                  onChange={getUserData}
+                />
+
+                <div>
+                  <label htmlFor="profilePicture" className="block text-sm font-medium text-gray-700">
+                    Profile Picture
+                  </label>
+                  <input
+                    name="profilePicture"
+                    type="file"
+                    accept="image/*"
+                    onChange={getUserData}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+                  />
+                  {submitted && formErrors.profilePicture && (
+                    <p className="mt-1 text-sm text-red-600">{formErrors.profilePicture}</p>
+                  )}
+                </div>
               </>
             )}
+
 
             <div className="flex justify-between pt-4">
               {step > 1 && (
@@ -177,58 +239,4 @@ export default function SignUpIndustrial() {
   );
 }
 
-function TextField({ id, label, type = "text", error, showError, value, onChange }) {
-  return (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">{label}</label>
-      <input
-        type={type}
-        id={id}
-        name={id}
-        value={value || ''}
-        onChange={onChange}
-        placeholder={`Enter your ${label.toLowerCase()}`}
-        className={`mt-1 w-full px-4 py-2 border ${showError && error ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none`}
-      />
-      {showError && error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-    </div>
-  );
-}
 
-function SelectField({ id, label, error, showError, options, value, onChange }) {
-  return (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">{label}</label>
-      <select
-        id={id}
-        name={id}
-        value={value || ''}
-        onChange={onChange}
-        className={`mt-1 w-full px-4 py-2 border ${showError && error ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none`}
-      >
-        <option value="">Select {label.toLowerCase()}</option>
-        {options.map((item) => (
-          <option key={item.id} value={item.id}>{item.name}</option>
-        ))}
-      </select>
-      {showError && error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-    </div>
-  );
-}
-
-function TextAreaField({ id, label, error, showError, value, onChange }) {
-  return (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">{label}</label>
-      <textarea
-        id={id}
-        name={id}
-        value={value || ''}
-        onChange={onChange}
-        placeholder={`Enter your ${label.toLowerCase()}`}
-        className={`mt-1 w-full px-4 py-2 border ${showError && error ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none`}
-      ></textarea>
-      {showError && error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-    </div>
-  );
-}

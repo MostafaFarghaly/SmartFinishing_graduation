@@ -1,16 +1,15 @@
 "use client";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from 'next/image';
-import Link from "next/link";
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
 
 export default function SignUpIndustrial() {
-  const [loading, setLoading] = useState(null); // "client" | "worker" | null
+const [loading, setLoading] = useState<string | null>(null);
   const router = useRouter();
 
   const handleNavigate = (path: string, role: string) => {
-    setLoading(role);
+    setLoading(role );
     setTimeout(() => {
       router.push(path);
     }, 1000); // delay just for UI effect

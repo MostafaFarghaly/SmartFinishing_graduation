@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import { useLoginClient } from "../../context/regester/login_context";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import {  useRouter } from 'next/navigation';
-
+import { useRouter } from 'next/navigation';
 
 export default function ChangePasswordPage() {
     const { changePassword } = useLoginClient();
@@ -17,56 +16,74 @@ export default function ChangePasswordPage() {
     const [repeatPassword, setRepeatPassword] = useState("");
 
     const [message, setMessage] = useState("");
-    const [isLoading, setIsLoading] = useState(false); // أضف حالة التحميل هنا
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async () => {
-        setIsLoading(true); // ابدأ التحميل
+        setIsLoading(true);
         try {
-            const res = await changePassword({
-                currentPassword: oldPassword,
-                newPassword,
-                confirmPassword: repeatPassword,
-            });
+        const res = await changePassword({
+            currentPassword: oldPassword,
+            newPassword,
+            confirmPassword: repeatPassword,
+        });
 
-            setMessage("Password changed successfully ✅");
-            setOldPassword("");
-            setNewPassword("");
-            setRepeatPassword("");
+        setMessage("Password changed successfully ✅");
+        setOldPassword("");
+        setNewPassword("");
+        setRepeatPassword("");
         } catch (err) {
-            setMessage(err.message || "Failed to change password.");
+        if (err instanceof Error) {
+            setMessage(err.message);
+        } else {
+            setMessage("Failed to change password.");
+        }
         } finally {
-            setIsLoading(false); // أوقف التحميل
-            setTimeout(() => {
-                router.push("/account");
-            }, 1500);
+        setIsLoading(false);
+        setTimeout(() => {
+            router.push("/account");
+        }, 1500);
         }
     };
 
-
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "#f7f7f7" }}>
-        <div style={{ background: "#fff", borderRadius: 10, boxShadow: "0 2px 8px rgba(0,0,0,0.07)", padding: 32, width: 400 }}>
-            <div style={{display: "flex",alignItems: "center",justifyContent: "space-between", marginBottom: 24}}>
-                <h2 style={{ fontWeight: 600, margin: 0 }}>Change password</h2>
-                <button
-                    onClick={() => window.history.back()}
-                    style={{
-                    background: "none",
-                    border: "none",
-                    fontSize: 20,
-                    cursor: "pointer",
-                    lineHeight: 1,
-                    padding: 0
-                    }}
-                    aria-label="Close"
-                >
-                    ✕
-                </button>
+        <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        background: "#f7f7f7"
+        }}>
+        <div style={{
+            background: "#fff",
+            borderRadius: 10,
+            boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
+            padding: 32,
+            width: 400
+        }}>
+            <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: 24
+            }}>
+            <h2 style={{ fontWeight: 600, margin: 0 }}>Change password</h2>
+            <button
+                onClick={() => window.history.back()}
+                style={{
+                background: "none",
+                border: "none",
+                fontSize: 20,
+                cursor: "pointer",
+                lineHeight: 1,
+                padding: 0
+                }}
+                aria-label="Close"
+            >
+                ✕
+            </button>
             </div>
 
-
-            {/* Inputs */}
             <PasswordInput
             label="Old password"
             show={showOld}
@@ -91,21 +108,16 @@ export default function ChangePasswordPage() {
             setValue={setRepeatPassword}
             />
 
-            {/* Message */}
             {message && (
-                <p
-                    style={{
-                    color: message.includes("successfully") ? "#27ae60" : "#e74c3c",
-                    fontSize: 14,
-                    marginBottom: 12,
-                    }}
-                >
-                    {message}
-                </p>
+            <p style={{
+                color: message.includes("successfully") ? "#27ae60" : "#e74c3c",
+                fontSize: 14,
+                marginBottom: 12,
+            }}>
+                {message}
+            </p>
             )}
 
-
-            {/* Button */}
             <button
             onClick={handleSubmit}
             style={{
@@ -119,7 +131,7 @@ export default function ChangePasswordPage() {
                 fontWeight: 500,
                 cursor: "pointer",
             }}
-            disabled={isLoading} // تعطيل الزر أثناء التحميل
+            disabled={isLoading}
             >
             {isLoading ? <i className="fa fa-spinner fa-spin"></i> : "Save password"}
             </button>
@@ -128,7 +140,25 @@ export default function ChangePasswordPage() {
     );
     }
 
-    function PasswordInput({ label, show, setShow, value, setValue, link, linkText }) {
+    type PasswordInputProps = {
+    label: string;
+    show: boolean;
+    setShow: React.Dispatch<React.SetStateAction<boolean>>;
+    value: string;
+    setValue: React.Dispatch<React.SetStateAction<string>>;
+    link?: string;
+    linkText?: string;
+    };
+
+    function PasswordInput({
+    label,
+    show,
+    setShow,
+    value,
+    setValue,
+    link,
+    linkText,
+    }: PasswordInputProps) {
     return (
         <div style={{ marginBottom: 20 }}>
         <label style={{ fontSize: 14, color: "#222" }}>{label}</label>
@@ -163,7 +193,6 @@ export default function ChangePasswordPage() {
             </button>
         </div>
 
-        {/* رابط Forget Password على نفس السطر يمين */}
         {link && (
             <div style={{
             display: "flex",

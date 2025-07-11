@@ -1,32 +1,36 @@
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { jwtDecode } from "jwt-decode";
 
-const TokenContext = createContext();
+type UserData = {
+  [key: string]: any;
+};
 
-export function TokenProvider({ children }) {
-  const [token, setToken] = useState(null);
-  const [userData, setUserData] = useState(null);
+type TokenContextType = {
+  token: string | null;
+  userData: UserData | null;
+  saveUserData: () => void;
+  logOut: () => void;
+};
+
+const TokenContext = createContext<TokenContextType | undefined>(undefined);
+
+export function TokenProvider({ children }: { children: ReactNode }) {
+  const [token, setToken] = useState<string | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   function saveUserData() {
     const storedToken = localStorage.getItem("token");
-
-    if (!storedToken || storedToken.split(".").length !== 3) {
-      console.warn("Token is missing or malformed");
-      return;
-    }
+    if (!storedToken || storedToken.split(".").length !== 3) return;
 
     try {
-      const decoded = jwtDecode(storedToken);
+      const decoded = jwtDecode<UserData>(storedToken);
       setToken(storedToken);
       setUserData(decoded);
-      // console.log("User data saved:", decoded);
     } catch (err) {
-      // console.error("Error decoding token:", err);
       setToken(null);
       setUserData(null);
     }
-    
   }
 
   useEffect(() => {
@@ -49,6 +53,10 @@ export function TokenProvider({ children }) {
   );
 }
 
-export function useToken() {
-  return useContext(TokenContext);
+export function useToken(): TokenContextType {
+  const context = useContext(TokenContext);
+  if (!context) {
+    throw new Error("useToken must be used within a TokenProvider");
+  }
+  return context;
 }

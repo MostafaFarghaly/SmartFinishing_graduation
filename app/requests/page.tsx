@@ -70,7 +70,6 @@ export default function RequestsPage() {
     const router = useRouter();
 
     const { userData } = useToken();
-    const { saveData } = useLoginClient();
 
     const role = userData?.["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || "";
     const isCustomer = role.toLowerCase() === "customer";

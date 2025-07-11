@@ -1,15 +1,30 @@
 "use client";
-
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Image from "next/image";
 
-export default function HomeCleaningSlider({ category, services }) {
+interface Service {
+  id: number;
+  name: string;
+  img: string;
+  // أضف أي خصائص أخرى حسب هيكل البيانات الفعلي
+}
+
+interface HomeCleaningSliderProps {
+  category: string;
+  services: Service[];
+}
+
+export default function HomeCleaningSlider({
+  category,
+  services,
+}: HomeCleaningSliderProps) {
   const [slidesPerView, setSlidesPerView] = useState(4);
   const [start, setStart] = useState(0);
   const [loadingId, setLoadingId] = useState<number | null>(null);
-  const router = useRouter();
 
+  const router = useRouter();
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 640) {

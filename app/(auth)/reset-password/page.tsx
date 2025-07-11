@@ -9,8 +9,7 @@ export default function ResetPasswordPage() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [success, setSuccess] = useState(null);
-
+  const [success, setSuccess] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -19,7 +18,7 @@ export default function ResetPasswordPage() {
 
   const { resetPassword } = useLoginClient();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e : React.FormEvent <HTMLFormElement>) => {
     e.preventDefault();
 
     if (!email || !token) {

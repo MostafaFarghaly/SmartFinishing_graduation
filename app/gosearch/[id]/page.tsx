@@ -8,16 +8,46 @@ import Footer from "../../components/Footer/page";
 import { useToken } from "../../context/token_context";
 import { useLoginClient } from "../../context/regester/login_context";
 
+// ✅ تعريف الواجهات
+interface City {
+  id: number;
+  name: string;
+}
+
+interface Worker {
+  id: number;
+  name: string;
+  email?: string;
+  description?: string;
+  address?: string;
+  city: string;
+  rating?: number | null;
+  profilePicture?: string | null;
+}
+
+interface Service {
+  id: number;
+  name: string;
+  pictureUrl: string;
+  workers: Worker[];
+}
+
+interface Category {
+  id: number;
+  name: string;
+  services: Service[];
+}
+
 export default function GoSearch() {
   const { baseUrl } = useApi();
-  const params = useParams();
+  const params = useParams() as { id: string };
   const router = useRouter();
 
   const serviceId = params.id;
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadingButton, setLoadingButton] = useState<string | null>(null);
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState<City[]>([]);
   const [selectedCity, setSelectedCity] = useState("All");
   const [lastUpdated, setLastUpdated] = useState<string>("");
 
@@ -50,9 +80,9 @@ export default function GoSearch() {
         if (!res.ok) throw new Error("Failed to fetch data");
 
         const data = await res.json();
-        const allServices = data?.data?.flatMap((cat) => cat.services || []);
+        const allServices = data?.data?.flatMap((cat: Category) => cat.services || []);
         const foundService = allServices.find(
-          (s) => String(s.id) === String(serviceId)
+          (s : Service) => String(s.id) === String(serviceId)
         );
 
         if (!foundService) {
@@ -64,7 +94,11 @@ export default function GoSearch() {
 
         // Set last updated time
         const now = new Date();
-        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const timeStr = now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
         setLastUpdated(timeStr);
       } catch (err) {
         console.error(err);
@@ -74,11 +108,8 @@ export default function GoSearch() {
     }
 
     if (serviceId) {
-      fetchData(); // initial fetch
-
-      interval = setInterval(() => {
-        fetchData();
-      }, 15000); // update every 30 seconds
+      fetchData();
+      interval = setInterval(fetchData, 15000);
     }
 
     return () => clearInterval(interval);
@@ -157,11 +188,6 @@ export default function GoSearch() {
               </option>
             ))}
           </select>
-
-          {/* Last Updated Indicator */}
-          {/* <p className="text-gray-500 text-sm mt-2">
-            🔄 Last updated at: <span className="font-medium">{lastUpdated}</span>
-          </p> */}
         </div>
 
         {/* Workers List */}

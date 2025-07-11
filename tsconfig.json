@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/PopularSlider.jsx", "app/components/Nav/page.jsx", "app/components/Navbar/page.jsx", "app/components/HomeCleaningSlider.tsx", "app/components/StartProjectForm.tsx", "app/home/PopularServices/page.jsx", "app/startProject/page.jsx", "app/updateaccount/page.jsx", "app/viewprofile/[id]/portfolio/page.jsx"],
   "exclude": ["node_modules"]
 }

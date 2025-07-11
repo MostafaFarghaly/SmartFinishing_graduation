@@ -1,21 +1,62 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import { useToken } from "../token_context";
 import { useApi } from "../ApiContext";
 
-const SignUpIndustrialContext = createContext();
+type AvailableDay = {
+  day: string;
+  startTime: string;
+  endTime: string;
+};
 
-export function SignUpIndustrialProvider({ children }) {
+export type WorkerSignUpData = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  phoneNumber: string;
+  address: string;
+  buildingNumber: string;
+  cityId: string;
+  age: string;
+  profilePicture: File | null;
+  serviceId: string;
+  description: string;
+  companyName: string;
+  experienceYears: string;
+  minPrice: string;
+  maxPrice: string;
+  availableDays: AvailableDay[];
+};
+
+type SignUpIndustrialContextType = {
+  error: string | string[] | null;
+  cities: { id: string; name: string }[];
+  services: { id: string; name: string }[];
+  isLoading: boolean;
+  user: WorkerSignUpData;
+  getUserData: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  submitForm: () => void;
+  addAvailableDay: () => void;
+  updateAvailableDay: (index: number, field: keyof AvailableDay, value: string) => void;
+  removeAvailableDay: (index: number) => void;
+  setUser: React.Dispatch<React.SetStateAction<WorkerSignUpData>>;
+  clearError: () => void;
+};
+
+const SignUpIndustrialContext = createContext<SignUpIndustrialContextType | null>(null);
+
+export function SignUpIndustrialProvider({ children }: { children: ReactNode }) {
   const { saveUserData } = useToken();
   const { baseUrl } = useApi();
 
-  const [error, setError] = useState(null);
-  const [cities, setCities] = useState([]);
-  const [services, setServices] = useState([]);
+  const [error, setError] = useState<string | string[] | null>(null);
+  const [cities, setCities] = useState<{ id: string; name: string }[]>([]);
+  const [services, setServices] = useState<{ id: string; name: string }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<WorkerSignUpData>({
     name: '',
     email: '',
     password: '',
@@ -45,7 +86,7 @@ export function SignUpIndustrialProvider({ children }) {
 
         setCities(citiesRes.data.data || citiesRes.data);
         const serviceList = servicesRes.data.data || [];
-        const validServices = serviceList.filter(s => s && s.id && s.name);
+        const validServices = serviceList.filter((s: any) => s && s.id && s.name);
         setServices(validServices);
       } catch (err) {
         console.error("❌ Failed to fetch data:", err);
@@ -54,39 +95,37 @@ export function SignUpIndustrialProvider({ children }) {
     };
 
     fetchData();
-  }, []);
+  }, [baseUrl]);
 
-  function getUserData(e) {
-    const { name, value, files } = e.target;
-    if (name === "profilePicture") {
-      setUser(prev => ({ ...prev, profilePicture: files[0] }));
+  function getUserData(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+    const { name, value, files } = e.target as HTMLInputElement;
+    if (name === "profilePicture" && files) {
+      setUser((prev) => ({ ...prev, profilePicture: files[0] }));
     } else {
-      setUser(prev => ({ ...prev, [name]: value ?? '' }));
+      setUser((prev) => ({ ...prev, [name]: value ?? '' }));
     }
   }
 
   function addAvailableDay() {
-    setUser(prev => ({
+    setUser((prev) => ({
       ...prev,
       availableDays: [...prev.availableDays, { day: '', startTime: '', endTime: '' }]
     }));
   }
 
-  function updateAvailableDay(index, field, value) {
+  function updateAvailableDay(index: number, field: keyof AvailableDay, value: string) {
     const updated = [...user.availableDays];
     updated[index][field] = value;
-    setUser(prev => ({ ...prev, availableDays: updated }));
+    setUser((prev) => ({ ...prev, availableDays: updated }));
   }
 
-  function removeAvailableDay(index) {
+  function removeAvailableDay(index: number) {
     const updated = user.availableDays.filter((_, i) => i !== index);
-    setUser(prev => ({ ...prev, availableDays: updated }));
+    setUser((prev) => ({ ...prev, availableDays: updated }));
   }
 
   async function sendData() {
     const formData = new FormData();
-
-    // Append fields required by API
     formData.append("Name", user.name);
     formData.append("Email", user.email);
     formData.append("Password", user.password);
@@ -99,9 +138,9 @@ export function SignUpIndustrialProvider({ children }) {
     formData.append("ServiceId", user.serviceId);
     formData.append("Description", user.description);
     formData.append("CompanyName", user.companyName || '');
-    formData.append("ExperienceYears", user.experienceYears || 0);
-    formData.append("MinPrice", user.minPrice || 0);
-    formData.append("MaxPrice", user.maxPrice || 0);
+    formData.append("ExperienceYears", user.experienceYears || '0');
+    formData.append("MinPrice", user.minPrice || '0');
+    formData.append("MaxPrice", user.maxPrice || '0');
     formData.append("AvailableDays", JSON.stringify(user.availableDays));
     if (user.profilePicture) {
       formData.append("ProfilePicture", user.profilePicture);
@@ -119,13 +158,11 @@ export function SignUpIndustrialProvider({ children }) {
       );
 
       if (!res.data.errors) {
-        // Success
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userData", JSON.stringify(res.data));
         saveUserData();
         window.location.href = "/";
       } else {
-        // Server returned validation errors (array of strings)
         setError(res.data.errors);
       }
     } catch (err) {

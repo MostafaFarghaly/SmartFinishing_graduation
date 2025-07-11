@@ -7,10 +7,10 @@ import { useLoginClient } from '../../context/regester/login_context';
 export default function ForgetPass() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [success, setSuccess] = useState(null); // لمعرفة نوع الرسالة
+  const [success, setSuccess] = useState<boolean | null>(null);
   const { forgotPassword } = useLoginClient();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await forgotPassword(email);
     setMessage(res.message);

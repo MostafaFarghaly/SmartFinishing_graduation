@@ -50,8 +50,12 @@ export default function AddPortfolioPage() {
       setTimeout(() => {
         router.push(`/viewprofile/${saveData?.workerId}`);
       }, 1500);
-    } catch (err: any) {
-      setError(err.message || "Something went wrong while uploading.");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Something went wrong while uploading.");
+      }
     } finally {
       setUploading(false);
     }

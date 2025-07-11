@@ -87,11 +87,13 @@ export default function StartProjectForm({ services, cities }: Props) {
 
   const handleBack = () => step > 1 && setStep(step - 1);
 
-  const onImagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setForm((f) => ({ ...f, images: Array.from(e.target.files) }));
-    }
-  };
+const onImagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const files = e.target.files;
+  if (files && files.length > 0) {
+    setForm((f) => ({ ...f, images: Array.from(files) }));
+  }
+};
+
 
   const SelectField = ({
     label,

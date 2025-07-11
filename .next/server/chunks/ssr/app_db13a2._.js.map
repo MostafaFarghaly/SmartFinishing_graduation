@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 12, "column": 0}, "map": {"version":3,"sources":["file://D%3A/front_end/projects/next_js/Graduation_project/smart-finshing/app/favicon.ico.mjs%20%28structured%20image%20object%29"],"sourcesContent":["import src from \"IMAGE\";\nexport default { src, width: 34, height: 33 }\n"],"names":[],"mappings":";;;AAAA;;uCACe;IAAE,KAAA,2GAAA,CAAA,UAAG;IAAE,OAAO;IAAI,QAAQ;AAAG"}},
-    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

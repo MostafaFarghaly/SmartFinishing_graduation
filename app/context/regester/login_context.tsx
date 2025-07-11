@@ -1,17 +1,48 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import axios from "axios";
 import { useToken } from "../token_context";
 import { useApi } from "../ApiContext";
 
-const LoginClientContext = createContext();
+type LoginClientContextType = {
+  error: string;
+  isLoading: boolean;
+  getUserData: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submitForm: (e: React.FormEvent<HTMLFormElement>) => void;
+  saveData: any;
+  token: string | null;
+  updateProfilePicture: (file: File) => Promise<string>;
+  updateAccountInfo: (updatedFields: any) => Promise<any>;
+  changePassword: (data: {
+    currentPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+  }) => Promise<any>;
+  deleteAccount: () => Promise<{ success: boolean; message?: string }>;
+  deleteProfilePicture: () => Promise<{ success: boolean; message?: string }>;
+  forgotPassword: (email: string) => Promise<{ success: boolean; message: string }>;
+  resetPassword: (data: {
+    email: string;
+    token: string;
+    newPassword: string;
+    confirmPassword: string;
+  }) => Promise<{ success: boolean; message: string }>;
+};
 
-export function LoginClientProvider({ children }) {
+const LoginClientContext = createContext<LoginClientContextType | null>(null);
+
+export function LoginClientProvider({ children }: { children: ReactNode }) {
   const { saveUserData } = useToken();
   const [error, setErrors] = useState("");
   const [isLoading, setisLoading] = useState(false);
   const [saveData, setSaveData] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState<string | null>(null);
   const { baseUrl } = useApi();
 
   const [user, setUser] = useState({
@@ -26,14 +57,13 @@ export function LoginClientProvider({ children }) {
     if (storedToken) setToken(storedToken);
   }, []);
 
-  function getUserData(eventInfo) {
+  function getUserData(eventInfo: React.ChangeEvent<HTMLInputElement>) {
     const updated = { ...user, [eventInfo.target.name]: eventInfo.target.value };
     setUser(updated);
   }
 
   async function sendData() {
     try {
-      // التحقق من وجود البريد أولاً
       const emailCheckRes = await fetch(
         `${baseUrl}/api/Account/emailexists?email=${encodeURIComponent(user.email)}`
       );
@@ -41,16 +71,13 @@ export function LoginClientProvider({ children }) {
 
       if (!emailExists) {
         setisLoading(false);
-        setErrors("there is no account with this email.");
+        setErrors("There is no account with this email.");
         return;
       }
 
-      // البريد موجود - الآن نحاول تسجيل الدخول
-      const { data } = await axios.post(
-        `${baseUrl}/api/account/login`,
-        user,
-        { validateStatus: () => true }
-      );
+      const { data } = await axios.post(`${baseUrl}/api/account/login`, user, {
+        validateStatus: () => true,
+      });
 
       if (data.token) {
         setisLoading(false);
@@ -62,24 +89,23 @@ export function LoginClientProvider({ children }) {
         window.location.href = "/";
       } else {
         setisLoading(false);
-        setErrors("the password is incorrect.");
+        setErrors("The password is incorrect.");
       }
     } catch (error) {
       setisLoading(false);
-      setErrors("فشل الاتصال بالخادم.");
+      setErrors("Server connection failed.");
     }
   }
 
-
-  function submitForm(e) {
+  function submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setisLoading(true);
     sendData();
   }
 
-  async function updateProfilePicture(file) {
+  async function updateProfilePicture(file: File) {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("لم يتم العثور على التوكن، يرجى تسجيل الدخول مجددًا.");
+    if (!token) throw new Error("Token not found. Please log in again.");
 
     try {
       const formData = new FormData();
@@ -93,12 +119,12 @@ export function LoginClientProvider({ children }) {
 
       if (!response.ok) {
         const result = await response.json();
-        throw new Error(result.message || "فشل رفع الصورة");
+        throw new Error(result.message || "Failed to upload profile picture");
       }
 
       const newUrl = await response.text();
       const oldDataRaw = localStorage.getItem("userData");
-      if (!oldDataRaw) throw new Error("بيانات المستخدم غير موجودة");
+      if (!oldDataRaw) throw new Error("User data not found");
 
       const oldData = JSON.parse(oldDataRaw);
       const updatedData = { ...oldData, profilePictureUrl: newUrl };
@@ -106,14 +132,14 @@ export function LoginClientProvider({ children }) {
       setSaveData(updatedData);
       return newUrl;
     } catch (error) {
-      console.error("فشل رفع الصورة:", error);
+      console.error("Upload failed:", error);
       throw error;
     }
   }
 
-  async function updateAccountInfo(updatedFields) {
+  async function updateAccountInfo(updatedFields: any) {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("لم يتم العثور على التوكن");
+    if (!token) throw new Error("Token not found");
 
     try {
       const response = await fetch(`${baseUrl}/api/Account/update`, {
@@ -131,9 +157,9 @@ export function LoginClientProvider({ children }) {
         try {
           result = JSON.parse(text);
         } catch {
-          result.message = text || "فشل التحديث";
+          result = { message: text || "Update failed" };
         }
-        throw new Error(result.message || "فشل التحديث");
+        throw new Error((result as any).message || "Update failed");
       }
 
       let cityName = "";
@@ -146,7 +172,7 @@ export function LoginClientProvider({ children }) {
 
         cityName = foundCity?.name || "";
       } catch (err) {
-        console.warn("فشل في جلب اسم المدينة:", err);
+        console.warn("Failed to fetch city name:", err);
       }
 
       const oldDataRaw = localStorage.getItem("userData");
@@ -171,14 +197,22 @@ export function LoginClientProvider({ children }) {
       setSaveData(updatedUserData);
       return updatedUserData;
     } catch (error) {
-      console.error("فشل التحديث:", error);
+      console.error("Update failed:", error);
       throw error;
     }
   }
 
-  async function changePassword({ currentPassword, newPassword, confirmPassword }) {
+  async function changePassword({
+    currentPassword,
+    newPassword,
+    confirmPassword,
+  }: {
+    currentPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+  }) {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("يجب تسجيل الدخول أولاً");
+    if (!token) throw new Error("You must be logged in.");
 
     try {
       const response = await fetch(`${baseUrl}/api/Account/change-password`, {
@@ -193,20 +227,20 @@ export function LoginClientProvider({ children }) {
       const result = await response.json();
 
       if (!response.ok || result.errors) {
-        const errorMessage = result.errors?.[0] || result.message || "فشل تغيير كلمة المرور.";
+        const errorMessage = result.errors?.[0] || result.message || "Failed to change password.";
         throw new Error(errorMessage);
       }
 
       return result;
     } catch (error) {
-      console.error("فشل تغيير كلمة المرور:", error);
+      console.error("Change password failed:", error);
       throw error;
     }
   }
 
   async function deleteAccount() {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("لم يتم العثور على التوكن");
+    if (!token) throw new Error("Token not found");
 
     try {
       const response = await fetch(`${baseUrl}/api/Account/deleteAccount`, {
@@ -218,7 +252,7 @@ export function LoginClientProvider({ children }) {
 
       if (!response.ok) {
         const result = await response.text();
-        throw new Error(result || "فشل حذف الحساب");
+        throw new Error(result || "Account deletion failed");
       }
 
       localStorage.removeItem("userData");
@@ -227,13 +261,13 @@ export function LoginClientProvider({ children }) {
       return { success: true };
     } catch (error) {
       console.error("Delete account error:", error);
-      return { success: false, message: error.message };
+      return { success: false, message: (error as Error).message };
     }
   }
 
   async function deleteProfilePicture() {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("لم يتم العثور على التوكن");
+    if (!token) throw new Error("Token not found");
 
     try {
       const response = await fetch(`${baseUrl}/api/Account/delete-profile-picture`, {
@@ -245,7 +279,7 @@ export function LoginClientProvider({ children }) {
 
       if (!response.ok) {
         const result = await response.text();
-        throw new Error(result || "فشل حذف الصورة");
+        throw new Error(result || "Failed to delete profile picture");
       }
 
       const oldDataRaw = localStorage.getItem("userData");
@@ -258,12 +292,12 @@ export function LoginClientProvider({ children }) {
 
       return { success: true };
     } catch (error) {
-      console.error("فشل حذف الصورة:", error);
-      return { success: false, message: error.message };
+      console.error("Delete profile picture failed:", error);
+      return { success: false, message: (error as Error).message };
     }
   }
 
-    async function forgotPassword(email) {
+  async function forgotPassword(email: string) {
     try {
       const response = await fetch(`${baseUrl}/api/Account/forgot-password`, {
         method: "POST",
@@ -275,17 +309,27 @@ export function LoginClientProvider({ children }) {
 
       if (!response.ok) {
         const result = await response.text();
-        throw new Error(result || "فشل إرسال رابط استعادة كلمة المرور.");
+        throw new Error(result || "Failed to send password reset link.");
       }
 
-      return { success: true, message: "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني." };
+      return { success: true, message: "Password reset link sent to your email." };
     } catch (error) {
-      console.error("فشل إرسال رابط إعادة كلمة المرور:", error);
-      return { success: false, message: error.message || "حدث خطأ غير متوقع." };
+      console.error("Forgot password error:", error);
+      return { success: false, message: (error as Error).message || "Unexpected error occurred." };
     }
   }
 
-    async function resetPassword({ email, token, newPassword, confirmPassword }) {
+  async function resetPassword({
+    email,
+    token,
+    newPassword,
+    confirmPassword,
+  }: {
+    email: string;
+    token: string;
+    newPassword: string;
+    confirmPassword: string;
+  }) {
     try {
       const response = await fetch(`${baseUrl}/api/Account/reset-password`, {
         method: "POST",
@@ -298,16 +342,15 @@ export function LoginClientProvider({ children }) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "فشل إعادة تعيين كلمة المرور.");
+        throw new Error(data.message || "Password reset failed.");
       }
 
-      return { success: true, message: "تم تغيير كلمة المرور بنجاح." };
+      return { success: true, message: "Password changed successfully." };
     } catch (error) {
       console.error("Reset password error:", error);
-      return { success: false, message: error.message };
+      return { success: false, message: (error as Error).message };
     }
   }
-
 
   return (
     <LoginClientContext.Provider
