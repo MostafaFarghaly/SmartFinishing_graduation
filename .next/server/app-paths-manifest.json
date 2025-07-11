@@ -1,9 +1,12 @@
 {
   "/page": "app/page.js",
-  "/allservices/page": "app/allservices/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/account/page": "app/account/page.js",
-  "/requests/page": "app/requests/page.js",
-  "/startProject/page": "app/startProject/page.js",
-  "/gosearch/[id]/page": "app/gosearch/[id]/page.js",
-  "/send-request/[id]/page": "app/send-request/[id]/page.js"
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(auth)/forgetPass/page": "app/(auth)/forgetPass/page.js",
+  "/(auth)/confirmcode/page": "app/(auth)/confirmcode/page.js",
+  "/(auth)/resetPass/page": "app/(auth)/resetPass/page.js",
+  "/(auth)/reset-password/page": "app/(auth)/reset-password/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(auth)/changepassword/page": "app/(auth)/changepassword/page.js"
 }

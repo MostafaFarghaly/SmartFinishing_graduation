@@ -263,6 +263,52 @@ export function LoginClientProvider({ children }) {
     }
   }
 
+    async function forgotPassword(email) {
+    try {
+      const response = await fetch(`${baseUrl}/api/Account/forgot-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        const result = await response.text();
+        throw new Error(result || "فشل إرسال رابط استعادة كلمة المرور.");
+      }
+
+      return { success: true, message: "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني." };
+    } catch (error) {
+      console.error("فشل إرسال رابط إعادة كلمة المرور:", error);
+      return { success: false, message: error.message || "حدث خطأ غير متوقع." };
+    }
+  }
+
+    async function resetPassword({ email, token, newPassword, confirmPassword }) {
+    try {
+      const response = await fetch(`${baseUrl}/api/Account/reset-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, token, newPassword, confirmPassword }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "فشل إعادة تعيين كلمة المرور.");
+      }
+
+      return { success: true, message: "تم تغيير كلمة المرور بنجاح." };
+    } catch (error) {
+      console.error("Reset password error:", error);
+      return { success: false, message: error.message };
+    }
+  }
+
+
   return (
     <LoginClientContext.Provider
       value={{
@@ -277,6 +323,8 @@ export function LoginClientProvider({ children }) {
         changePassword,
         deleteAccount,
         deleteProfilePicture,
+        forgotPassword,
+        resetPassword,
       }}
     >
       {children}

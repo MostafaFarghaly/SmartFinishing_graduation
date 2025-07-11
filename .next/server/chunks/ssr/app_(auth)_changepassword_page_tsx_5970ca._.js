@@ -11,7 +11,9 @@ __turbopack_esm__({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$regester$2f$login_context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/app/context/regester/login_context.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -26,6 +28,7 @@ function ChangePasswordPage() {
     const [repeatPassword, setRepeatPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [message, setMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false); // أضف حالة التحميل هنا
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const handleSubmit = async ()=>{
         setIsLoading(true); // ابدأ التحميل
         try {
@@ -42,6 +45,9 @@ function ChangePasswordPage() {
             setMessage(err.message || "Failed to change password.");
         } finally{
             setIsLoading(false); // أوقف التحميل
+            setTimeout(()=>{
+                router.push("/account");
+            }, 1500);
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -77,7 +83,7 @@ function ChangePasswordPage() {
                             children: "Change password"
                         }, void 0, false, {
                             fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                            lineNumber: 45,
+                            lineNumber: 51,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -94,13 +100,13 @@ function ChangePasswordPage() {
                             children: "✕"
                         }, void 0, false, {
                             fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                            lineNumber: 46,
+                            lineNumber: 52,
                             columnNumber: 17
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                    lineNumber: 44,
+                    lineNumber: 50,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PasswordInput, {
@@ -113,7 +119,7 @@ function ChangePasswordPage() {
                     linkText: "Forget password ?"
                 }, void 0, false, {
                     fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                    lineNumber: 64,
+                    lineNumber: 70,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PasswordInput, {
@@ -124,7 +130,7 @@ function ChangePasswordPage() {
                     setValue: setNewPassword
                 }, void 0, false, {
                     fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                    lineNumber: 73,
+                    lineNumber: 79,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PasswordInput, {
@@ -135,7 +141,7 @@ function ChangePasswordPage() {
                     setValue: setRepeatPassword
                 }, void 0, false, {
                     fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                    lineNumber: 80,
+                    lineNumber: 86,
                     columnNumber: 13
                 }, this),
                 message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -147,7 +153,7 @@ function ChangePasswordPage() {
                     children: message
                 }, void 0, false, {
                     fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                    lineNumber: 90,
+                    lineNumber: 96,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -168,23 +174,23 @@ function ChangePasswordPage() {
                         className: "fa fa-spinner fa-spin"
                     }, void 0, false, {
                         fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                        lineNumber: 118,
+                        lineNumber: 124,
                         columnNumber: 26
                     }, this) : "Save password"
                 }, void 0, false, {
                     fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                    lineNumber: 103,
+                    lineNumber: 109,
                     columnNumber: 13
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/(auth)/changepassword/page.tsx",
-            lineNumber: 43,
+            lineNumber: 49,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/(auth)/changepassword/page.tsx",
-        lineNumber: 42,
+        lineNumber: 48,
         columnNumber: 9
     }, this);
 }
@@ -202,7 +208,7 @@ function PasswordInput({ label, show, setShow, value, setValue, link, linkText }
                 children: label
             }, void 0, false, {
                 fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                lineNumber: 128,
+                lineNumber: 134,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -230,7 +236,7 @@ function PasswordInput({ label, show, setShow, value, setValue, link, linkText }
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                        lineNumber: 137,
+                        lineNumber: 143,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -244,13 +250,13 @@ function PasswordInput({ label, show, setShow, value, setValue, link, linkText }
                         children: show ? "🙈" : "👁️"
                     }, void 0, false, {
                         fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                        lineNumber: 151,
+                        lineNumber: 157,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                lineNumber: 129,
+                lineNumber: 135,
                 columnNumber: 9
             }, this),
             link && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -269,18 +275,18 @@ function PasswordInput({ label, show, setShow, value, setValue, link, linkText }
                     children: linkText || "Forget password ?"
                 }, void 0, false, {
                     fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                    lineNumber: 167,
+                    lineNumber: 173,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(auth)/changepassword/page.tsx",
-                lineNumber: 162,
+                lineNumber: 168,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(auth)/changepassword/page.tsx",
-        lineNumber: 127,
+        lineNumber: 133,
         columnNumber: 9
     }, this);
 }

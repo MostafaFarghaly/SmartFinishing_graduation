@@ -6,8 +6,8 @@
   "path": "static/chunks/app_(auth)_forgetPass_page_tsx_046457._.js",
   "chunks": [
     "static/chunks/node_modules_@fortawesome_fontawesome-free_css_all_min_fc6619.css",
-    "static/chunks/node_modules_next_dist_a082a6._.js",
-    "static/chunks/app_(auth)_forgetPass_page_tsx_fdef91._.js"
+    "static/chunks/node_modules_next_f5074b._.js",
+    "static/chunks/app_(auth)_forgetPass_page_tsx_279a2c._.js"
   ],
   "source": "dynamic"
 });

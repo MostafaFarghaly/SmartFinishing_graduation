@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useLoginClient } from "../../context/regester/login_context";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import {  useRouter } from 'next/navigation';
+
 
 export default function ChangePasswordPage() {
     const { changePassword } = useLoginClient();
@@ -16,6 +18,7 @@ export default function ChangePasswordPage() {
 
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false); // أضف حالة التحميل هنا
+    const router = useRouter();
 
     const handleSubmit = async () => {
         setIsLoading(true); // ابدأ التحميل
@@ -34,6 +37,9 @@ export default function ChangePasswordPage() {
             setMessage(err.message || "Failed to change password.");
         } finally {
             setIsLoading(false); // أوقف التحميل
+            setTimeout(() => {
+                router.push("/account");
+            }, 1500);
         }
     };
 

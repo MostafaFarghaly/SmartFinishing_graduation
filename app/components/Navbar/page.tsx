@@ -73,7 +73,7 @@ export default function Navbar() {
             <img
               src="/logo.jpg"
               alt="Logo"
-              className="h-8 w-8 mr-2"
+              className="h-8 w-8 mr-2 rounded-md"
             />
             <span className="text-green-500">Smart Finishing</span>
           </Link>
@@ -188,13 +188,7 @@ export default function Navbar() {
                     >
                       <UserCircleIcon className="h-5 w-5 mr-2 text-gray-600" /> {loading.account ? <i className="fa fa-spinner fa-spin"></i> : 'Account'}
                     </Link>
-                    <Link
-                      href="/support"
-                      className={`flex items-center px-4 py-2 bg-green-50 hover:bg-green-100 ${loading.support ? 'opacity-50 pointer-events-none' : ''}`}
-                      onClick={() => handleLoading('support')}
-                    >
-                      <LifebuoyIcon className="h-5 w-5 mr-2 text-green-600" /> {loading.support ? <i className="fa fa-spinner fa-spin"></i> : 'Support'}
-                    </Link>
+                    
                     <button
                       onClick={handleLogout}
                       disabled={loading.logout}

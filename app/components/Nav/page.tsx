@@ -64,7 +64,7 @@ export default function MinimalNavbar() {
           <img
             src="/logo.jpg"
             alt="Logo"
-            className="h-8 w-8 mr-2"
+            className="h-8 w-8 mr-2 rounded-md"
           />
           <span className="text-green-500">Smart Finishing</span>
         </Link>
@@ -129,20 +129,7 @@ export default function MinimalNavbar() {
                         "Account"
                       )}
                     </Link>
-                    <Link
-                      href="/support"
-                      className={`flex items-center px-4 py-2 hover:bg-green-50 ${
-                        loadingBtn.support ? "opacity-50 pointer-events-none" : ""
-                      }`}
-                      onClick={() => handleLoading("support")}
-                    >
-                      <LifebuoyIcon className="h-5 w-5 mr-2 text-green-600" />
-                      {loadingBtn.support ? (
-                        <i className="fa fa-spinner fa-spin"></i>
-                      ) : (
-                        "Support"
-                      )}
-                    </Link>
+
                     <button
                       onClick={handleLogout}
                       disabled={loadingBtn.logout}

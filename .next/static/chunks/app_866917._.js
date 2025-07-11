@@ -15,7 +15,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$regester$2
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$UserCircleIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UserCircleIcon$3e$__ = __turbopack_import__("[project]/node_modules/@heroicons/react/24/outline/esm/UserCircleIcon.js [app-client] (ecmascript) <export default as UserCircleIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$ChevronDownIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDownIcon$3e$__ = __turbopack_import__("[project]/node_modules/@heroicons/react/24/outline/esm/ChevronDownIcon.js [app-client] (ecmascript) <export default as ChevronDownIcon>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$LifebuoyIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LifebuoyIcon$3e$__ = __turbopack_import__("[project]/node_modules/@heroicons/react/24/outline/esm/LifebuoyIcon.js [app-client] (ecmascript) <export default as LifebuoyIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$ArrowRightOnRectangleIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRightOnRectangleIcon$3e$__ = __turbopack_import__("[project]/node_modules/@heroicons/react/24/outline/esm/ArrowRightOnRectangleIcon.js [app-client] (ecmascript) <export default as ArrowRightOnRectangleIcon>");
 ;
 var _s = __turbopack_refresh__.signature();
@@ -93,7 +92,7 @@ function MinimalNavbar() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             src: "/logo.jpg",
                             alt: "Logo",
-                            className: "h-8 w-8 mr-2"
+                            className: "h-8 w-8 mr-2 rounded-md"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Nav/page.tsx",
                             lineNumber: 64,
@@ -222,31 +221,6 @@ function MinimalNavbar() {
                                                 lineNumber: 118,
                                                 columnNumber: 21
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                href: "/support",
-                                                className: `flex items-center px-4 py-2 hover:bg-green-50 ${loadingBtn.support ? "opacity-50 pointer-events-none" : ""}`,
-                                                onClick: ()=>handleLoading("support"),
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$LifebuoyIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LifebuoyIcon$3e$__["LifebuoyIcon"], {
-                                                        className: "h-5 w-5 mr-2 text-green-600"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 139,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    loadingBtn.support ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
-                                                        className: "fa fa-spinner fa-spin"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 141,
-                                                        columnNumber: 25
-                                                    }, this) : "Support"
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 132,
-                                                columnNumber: 21
-                                            }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 onClick: handleLogout,
                                                 disabled: loadingBtn.logout,
@@ -256,14 +230,14 @@ function MinimalNavbar() {
                                                         className: "h-5 w-5 mr-2 text-gray-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 153,
+                                                        lineNumber: 140,
                                                         columnNumber: 23
                                                     }, this),
                                                     loadingBtn.logout ? "Logging out..." : "Log out"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 133,
                                                 columnNumber: 21
                                             }, this)
                                         ]
@@ -290,12 +264,12 @@ function MinimalNavbar() {
                                     className: "fa fa-spinner fa-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Nav/page.tsx",
-                                    lineNumber: 169,
+                                    lineNumber: 156,
                                     columnNumber: 37
                                 }, this) : "Login"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 162,
+                                lineNumber: 149,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -306,18 +280,18 @@ function MinimalNavbar() {
                                     className: "fa fa-spinner fa-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Nav/page.tsx",
-                                    lineNumber: 178,
+                                    lineNumber: 165,
                                     columnNumber: 38
                                 }, this) : "Sign Up"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 171,
+                                lineNumber: 158,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Nav/page.tsx",
-                        lineNumber: 161,
+                        lineNumber: 148,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {

@@ -581,6 +581,63 @@ function LoginClientProvider({ children }) {
             };
         }
     }
+    async function forgotPassword(email) {
+        try {
+            const response = await fetch(`${baseUrl}/api/Account/forgot-password`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email
+                })
+            });
+            if (!response.ok) {
+                const result = await response.text();
+                throw new Error(result || "فشل إرسال رابط استعادة كلمة المرور.");
+            }
+            return {
+                success: true,
+                message: "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني."
+            };
+        } catch (error) {
+            console.error("فشل إرسال رابط إعادة كلمة المرور:", error);
+            return {
+                success: false,
+                message: error.message || "حدث خطأ غير متوقع."
+            };
+        }
+    }
+    async function resetPassword({ email, token, newPassword, confirmPassword }) {
+        try {
+            const response = await fetch(`${baseUrl}/api/Account/reset-password`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    token,
+                    newPassword,
+                    confirmPassword
+                })
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "فشل إعادة تعيين كلمة المرور.");
+            }
+            return {
+                success: true,
+                message: "تم تغيير كلمة المرور بنجاح."
+            };
+        } catch (error) {
+            console.error("Reset password error:", error);
+            return {
+                success: false,
+                message: error.message
+            };
+        }
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LoginClientContext.Provider, {
         value: {
             error,
@@ -593,12 +650,14 @@ function LoginClientProvider({ children }) {
             updateAccountInfo,
             changePassword,
             deleteAccount,
-            deleteProfilePicture
+            deleteProfilePicture,
+            forgotPassword,
+            resetPassword
         },
         children: children
     }, void 0, false, {
         fileName: "[project]/app/context/regester/login_context.tsx",
-        lineNumber: 267,
+        lineNumber: 313,
         columnNumber: 5
     }, this);
 }
@@ -901,7 +960,7 @@ function ProtectedRoute({ children }) {
         "/confirmcode",
         "/forgetPass",
         "/login",
-        "/resetPass",
+        "/reset-password",
         "/signup",
         "/signUpClient",
         "/signUpIndustrial",

@@ -82,14 +82,23 @@ function MinimalNavbar() {
                     href: "/",
                     className: "text-xl font-bold flex items-center",
                     children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "inline-block w-5 h-5 mr-2 rounded-full bg-green-500"
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: "/logo.jpg",
+                            alt: "Logo",
+                            className: "h-8 w-8 mr-2"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Nav/page.tsx",
                             lineNumber: 64,
                             columnNumber: 11
                         }, this),
-                        "logo"
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "text-green-500",
+                            children: "Smart Finishing"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/Nav/page.tsx",
+                            lineNumber: 69,
+                            columnNumber: 11
+                        }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Nav/page.tsx",
@@ -112,12 +121,12 @@ function MinimalNavbar() {
                                             className: "fa fa-spinner fa-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Nav/page.tsx",
-                                            lineNumber: 80,
+                                            lineNumber: 84,
                                             columnNumber: 42
                                         }, this) : "Requests"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                        lineNumber: 73,
+                                        lineNumber: 77,
                                         columnNumber: 17
                                     }, this),
                                     !isWorker && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -128,18 +137,18 @@ function MinimalNavbar() {
                                             className: "fa fa-spinner fa-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Nav/page.tsx",
-                                            lineNumber: 90,
+                                            lineNumber: 94,
                                             columnNumber: 44
                                         }, this) : "Projects"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                        lineNumber: 83,
+                                        lineNumber: 87,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 72,
+                                lineNumber: 76,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -153,7 +162,7 @@ function MinimalNavbar() {
                                                 className: "h-5 w-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 101,
+                                                lineNumber: 105,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -161,20 +170,20 @@ function MinimalNavbar() {
                                                 children: saveData?.displayName?.split(" ")[0] || "User"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 106,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$ChevronDownIcon$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDownIcon$3e$__["ChevronDownIcon"], {
                                                 className: `h-4 w-4 ml-1 transform transition-transform ${dropOpen ? "rotate-180" : ""}`
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 105,
+                                                lineNumber: 109,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                        lineNumber: 97,
+                                        lineNumber: 101,
                                         columnNumber: 17
                                     }, this),
                                     dropOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -189,20 +198,20 @@ function MinimalNavbar() {
                                                         className: "h-5 w-5 mr-2 text-gray-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 121,
+                                                        lineNumber: 125,
                                                         columnNumber: 23
                                                     }, this),
                                                     loadingBtn.account ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                                         className: "fa fa-spinner fa-spin"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 123,
+                                                        lineNumber: 127,
                                                         columnNumber: 25
                                                     }, this) : "Account"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 114,
+                                                lineNumber: 118,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -214,20 +223,20 @@ function MinimalNavbar() {
                                                         className: "h-5 w-5 mr-2 text-green-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 135,
+                                                        lineNumber: 139,
                                                         columnNumber: 23
                                                     }, this),
                                                     loadingBtn.support ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                                         className: "fa fa-spinner fa-spin"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 137,
+                                                        lineNumber: 141,
                                                         columnNumber: 25
                                                     }, this) : "Support"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 132,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -239,26 +248,26 @@ function MinimalNavbar() {
                                                         className: "h-5 w-5 mr-2 text-gray-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 149,
+                                                        lineNumber: 153,
                                                         columnNumber: 23
                                                     }, this),
                                                     loadingBtn.logout ? "Logging out..." : "Log out"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 142,
+                                                lineNumber: 146,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                        lineNumber: 113,
+                                        lineNumber: 117,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 96,
+                                lineNumber: 100,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -273,12 +282,12 @@ function MinimalNavbar() {
                                     className: "fa fa-spinner fa-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Nav/page.tsx",
-                                    lineNumber: 165,
+                                    lineNumber: 169,
                                     columnNumber: 37
                                 }, this) : "Login"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 158,
+                                lineNumber: 162,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -289,23 +298,23 @@ function MinimalNavbar() {
                                     className: "fa fa-spinner fa-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Nav/page.tsx",
-                                    lineNumber: 174,
+                                    lineNumber: 178,
                                     columnNumber: 38
                                 }, this) : "Sign Up"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 167,
+                                lineNumber: 171,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Nav/page.tsx",
-                        lineNumber: 157,
+                        lineNumber: 161,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/components/Nav/page.tsx",
-                    lineNumber: 69,
+                    lineNumber: 73,
                     columnNumber: 9
                 }, this)
             ]

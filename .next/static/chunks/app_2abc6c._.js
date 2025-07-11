@@ -1570,7 +1570,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$token_cont
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$regester$2f$login_context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/app/context/regester/login_context.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$UserCircleIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UserCircleIcon$3e$__ = __turbopack_import__("[project]/node_modules/@heroicons/react/24/outline/esm/UserCircleIcon.js [app-client] (ecmascript) <export default as UserCircleIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$ChevronDownIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDownIcon$3e$__ = __turbopack_import__("[project]/node_modules/@heroicons/react/24/outline/esm/ChevronDownIcon.js [app-client] (ecmascript) <export default as ChevronDownIcon>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$LifebuoyIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LifebuoyIcon$3e$__ = __turbopack_import__("[project]/node_modules/@heroicons/react/24/outline/esm/LifebuoyIcon.js [app-client] (ecmascript) <export default as LifebuoyIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$ArrowRightOnRectangleIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRightOnRectangleIcon$3e$__ = __turbopack_import__("[project]/node_modules/@heroicons/react/24/outline/esm/ArrowRightOnRectangleIcon.js [app-client] (ecmascript) <export default as ArrowRightOnRectangleIcon>");
 ;
 var _s = __turbopack_refresh__.signature();
@@ -1657,7 +1656,7 @@ function Navbar() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                     src: "/logo.jpg",
                                     alt: "Logo",
-                                    className: "h-8 w-8 mr-2"
+                                    className: "h-8 w-8 mr-2 rounded-md"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar/page.tsx",
                                     lineNumber: 73,
@@ -1917,32 +1916,6 @@ function Navbar() {
                                                 lineNumber: 184,
                                                 columnNumber: 21
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                href: "/support",
-                                                className: `flex items-center px-4 py-2 bg-green-50 hover:bg-green-100 ${loading.support ? 'opacity-50 pointer-events-none' : ''}`,
-                                                onClick: ()=>handleLoading('support'),
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$LifebuoyIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LifebuoyIcon$3e$__["LifebuoyIcon"], {
-                                                        className: "h-5 w-5 mr-2 text-green-600"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/components/Navbar/page.tsx",
-                                                        lineNumber: 196,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    " ",
-                                                    loading.support ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
-                                                        className: "fa fa-spinner fa-spin"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/components/Navbar/page.tsx",
-                                                        lineNumber: 196,
-                                                        columnNumber: 99
-                                                    }, this) : 'Support'
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/components/Navbar/page.tsx",
-                                                lineNumber: 191,
-                                                columnNumber: 21
-                                            }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 onClick: handleLogout,
                                                 disabled: loading.logout,
@@ -1952,7 +1925,7 @@ function Navbar() {
                                                         className: "h-5 w-5 mr-2 text-gray-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Navbar/page.tsx",
-                                                        lineNumber: 203,
+                                                        lineNumber: 197,
                                                         columnNumber: 23
                                                     }, this),
                                                     " ",
@@ -1960,7 +1933,7 @@ function Navbar() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Navbar/page.tsx",
-                                                lineNumber: 198,
+                                                lineNumber: 192,
                                                 columnNumber: 21
                                             }, this)
                                         ]
@@ -1987,12 +1960,12 @@ function Navbar() {
                                     className: "fa fa-spinner fa-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar/page.tsx",
-                                    lineNumber: 216,
+                                    lineNumber: 210,
                                     columnNumber: 34
                                 }, this) : 'Login'
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar/page.tsx",
-                                lineNumber: 211,
+                                lineNumber: 205,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2003,18 +1976,18 @@ function Navbar() {
                                     className: "fa fa-spinner fa-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar/page.tsx",
-                                    lineNumber: 223,
+                                    lineNumber: 217,
                                     columnNumber: 35
                                 }, this) : 'Sign Up'
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar/page.tsx",
-                                lineNumber: 218,
+                                lineNumber: 212,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Navbar/page.tsx",
-                        lineNumber: 210,
+                        lineNumber: 204,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {

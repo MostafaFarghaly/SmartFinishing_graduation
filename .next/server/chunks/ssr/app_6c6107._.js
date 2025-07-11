@@ -30,7 +30,6 @@ function MinimalNavbar() {
     const { saveData } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$regester$2f$login_context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLoginClient"])();
     const [dropOpen, setDropOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const dropRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // حالة للتحميل على الأزرار والروابط
     const [loadingBtn, setLoadingBtn] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
         requests: false,
         projects: false,
@@ -52,13 +51,11 @@ function MinimalNavbar() {
         document.addEventListener("mousedown", handleClickOutside);
         return ()=>document.removeEventListener("mousedown", handleClickOutside);
     }, []);
-    // دالة لتعيين حالة تحميل مؤقتة (مثلا 2 ثانية)
     const handleLoading = (key)=>{
         setLoadingBtn((prev)=>({
                 ...prev,
                 [key]: true
             }));
-        // ممكن هنا تعمل actual async operation
         setTimeout(()=>{
             setLoadingBtn((prev)=>({
                     ...prev,
@@ -66,126 +63,131 @@ function MinimalNavbar() {
                 }));
         }, 2000);
     };
-    // تعديل دالة logOut لإظهار تحميل أثناء العملية
     const handleLogout = ()=>{
         setLoadingBtn((prev)=>({
                 ...prev,
                 logout: true
             }));
-        Promise.resolve(logOut()) // تأكد أن logOut ترجع Promise
-        .finally(()=>{
-            setLoadingBtn((prev)=>({
+        Promise.resolve(logOut()).finally(()=>setLoadingBtn((prev)=>({
                     ...prev,
                     logout: false
-                }));
-        });
+                })));
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-        className: "relative p-4 text-black shadow-md backdrop-blur-sm z-[9999]",
+        className: "w-full bg-white shadow-md z-[9999]",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "container mx-auto flex justify-between items-center",
+            className: "max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center p-4 gap-4 md:gap-0",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                     href: "/",
                     className: "text-xl font-bold flex items-center",
                     children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: "/logo.jpg",
+                            alt: "Logo",
+                            className: "h-8 w-8 mr-2"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/Nav/page.tsx",
+                            lineNumber: 64,
+                            columnNumber: 11
+                        }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "inline-block w-5 h-5 mr-2 rounded-full"
+                            className: "text-green-500",
+                            children: "Smart Finishing"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Nav/page.tsx",
                             lineNumber: 69,
                             columnNumber: 11
-                        }, this),
-                        "logo"
+                        }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Nav/page.tsx",
-                    lineNumber: 68,
+                    lineNumber: 63,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: `lg:flex lg:items-center lg:w-auto w-full lg:block mt-4 lg:mt-0`,
+                    className: "flex flex-col md:flex-row md:items-center gap-4 md:gap-6",
                     ref: dropRef,
                     children: userData ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex gap-4 font-medium px-2",
+                                className: "flex gap-4 font-medium",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/requests",
-                                        className: `hover:text-green-400 px-3 py-1 rounded ${loadingBtn.requests ? "opacity-50 pointer-events-none" : ""}`,
+                                        className: `hover:text-green-500 px-3 py-1 ${loadingBtn.requests ? "opacity-50 pointer-events-none" : ""}`,
                                         onClick: ()=>handleLoading("requests"),
                                         children: loadingBtn.requests ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                             className: "fa fa-spinner fa-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Nav/page.tsx",
-                                            lineNumber: 88,
-                                            columnNumber: 43
+                                            lineNumber: 84,
+                                            columnNumber: 42
                                         }, this) : "Requests"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 77,
                                         columnNumber: 17
                                     }, this),
                                     !isWorker && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/projects",
-                                        className: `hover:text-green-400 px-3 py-1 rounded ${loadingBtn.projects ? "opacity-50 pointer-events-none" : ""}`,
+                                        className: `hover:text-green-500 px-3 py-1 ${loadingBtn.projects ? "opacity-50 pointer-events-none" : ""}`,
                                         onClick: ()=>handleLoading("projects"),
                                         children: loadingBtn.projects ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                             className: "fa fa-spinner fa-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Nav/page.tsx",
-                                            lineNumber: 98,
-                                            columnNumber: 45
+                                            lineNumber: 94,
+                                            columnNumber: 44
                                         }, this) : "Projects"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                        lineNumber: 91,
+                                        lineNumber: 87,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 80,
+                                lineNumber: 76,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative ml-4",
+                                className: "relative",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setDropOpen(!dropOpen),
-                                        className: "z-[9999] relative flex items-center bg-green-500 text-white px-4 py-2 rounded-md hover:bg-opacity-90 focus:outline-none",
+                                        className: "flex items-center bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$UserCircleIcon$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__UserCircleIcon$3e$__["UserCircleIcon"], {
                                                 className: "h-5 w-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 108,
+                                                lineNumber: 105,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "ml-2",
-                                                children: saveData.displayName.split(" ")[0]
+                                                className: "ml-2 hidden sm:inline-block",
+                                                children: saveData?.displayName?.split(" ")[0] || "User"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 109,
+                                                lineNumber: 106,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$ChevronDownIcon$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDownIcon$3e$__["ChevronDownIcon"], {
                                                 className: `h-4 w-4 ml-1 transform transition-transform ${dropOpen ? "rotate-180" : ""}`
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 112,
+                                                lineNumber: 109,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                        lineNumber: 104,
+                                        lineNumber: 101,
                                         columnNumber: 17
                                     }, this),
                                     dropOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "fixed top-16 right-4 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-[99999] overflow-hidden text-black",
+                                        className: "absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-[99999] overflow-hidden text-black",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                 href: "/account",
@@ -196,47 +198,45 @@ function MinimalNavbar() {
                                                         className: "h-5 w-5 mr-2 text-gray-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 128,
+                                                        lineNumber: 125,
                                                         columnNumber: 23
                                                     }, this),
-                                                    " ",
                                                     loadingBtn.account ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                                         className: "fa fa-spinner fa-spin"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 129,
-                                                        columnNumber: 46
+                                                        lineNumber: 127,
+                                                        columnNumber: 25
                                                     }, this) : "Account"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 121,
+                                                lineNumber: 118,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                 href: "/support",
-                                                className: `flex items-center px-4 py-2 bg-green-50 hover:bg-green-100 ${loadingBtn.support ? "opacity-50 pointer-events-none" : ""}`,
+                                                className: `flex items-center px-4 py-2 hover:bg-green-50 ${loadingBtn.support ? "opacity-50 pointer-events-none" : ""}`,
                                                 onClick: ()=>handleLoading("support"),
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$heroicons$2f$react$2f$24$2f$outline$2f$esm$2f$LifebuoyIcon$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__LifebuoyIcon$3e$__["LifebuoyIcon"], {
                                                         className: "h-5 w-5 mr-2 text-green-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 138,
+                                                        lineNumber: 139,
                                                         columnNumber: 23
                                                     }, this),
-                                                    " ",
                                                     loadingBtn.support ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                                         className: "fa fa-spinner fa-spin"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 139,
-                                                        columnNumber: 46
+                                                        lineNumber: 141,
+                                                        columnNumber: 25
                                                     }, this) : "Support"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 131,
+                                                lineNumber: 132,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -248,47 +248,46 @@ function MinimalNavbar() {
                                                         className: "h-5 w-5 mr-2 text-gray-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                                        lineNumber: 148,
+                                                        lineNumber: 153,
                                                         columnNumber: 23
                                                     }, this),
-                                                    " ",
                                                     loadingBtn.logout ? "Logging out..." : "Log out"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                                lineNumber: 141,
+                                                lineNumber: 146,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/Nav/page.tsx",
-                                        lineNumber: 120,
+                                        lineNumber: 117,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 103,
+                                lineNumber: 100,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center justify-center space-x-4",
+                        className: "flex flex-wrap items-center justify-center gap-2",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                 href: "/login",
-                                className: `px-4 py-2 border text-white rounded-md hover:bg-gray-100 ${loadingBtn.login ? "opacity-50 pointer-events-none" : ""}`,
+                                className: `px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-100 ${loadingBtn.login ? "opacity-50 pointer-events-none" : ""}`,
                                 onClick: ()=>handleLoading("login"),
                                 children: loadingBtn.login ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                     className: "fa fa-spinner fa-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Nav/page.tsx",
-                                    lineNumber: 164,
-                                    columnNumber: 38
+                                    lineNumber: 169,
+                                    columnNumber: 37
                                 }, this) : "Login"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 157,
+                                lineNumber: 162,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -299,34 +298,34 @@ function MinimalNavbar() {
                                     className: "fa fa-spinner fa-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Nav/page.tsx",
-                                    lineNumber: 173,
-                                    columnNumber: 39
+                                    lineNumber: 178,
+                                    columnNumber: 38
                                 }, this) : "Sign Up"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Nav/page.tsx",
-                                lineNumber: 166,
+                                lineNumber: 171,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Nav/page.tsx",
-                        lineNumber: 156,
+                        lineNumber: 161,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/components/Nav/page.tsx",
-                    lineNumber: 74,
+                    lineNumber: 73,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/components/Nav/page.tsx",
-            lineNumber: 66,
+            lineNumber: 61,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/Nav/page.tsx",
-        lineNumber: 65,
+        lineNumber: 60,
         columnNumber: 5
     }, this);
 }

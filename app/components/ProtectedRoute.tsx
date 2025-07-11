@@ -16,7 +16,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
     "/confirmcode",
     "/forgetPass",
     "/login",
-    "/resetPass",
+    "/reset-password",
     "/signup",
     "/signUpClient",
     "/signUpIndustrial",
